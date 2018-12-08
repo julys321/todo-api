@@ -1,5 +1,7 @@
 package lt.voidpumpkin.homework.todoapi;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -15,4 +17,10 @@ public class TodoItemController {
         todoItems.add(new TodoItem("5","Get pants","2009-12-08"));
         todoItems.add(new TodoItem("2","Take a bath","2020-10-01"));
     }
+
+    @RequestMapping(value = "/allTodoItems",method = RequestMethod.GET)
+    public List<TodoItem> getAllTodoItems() {
+        return todoItems;
+    }
+
 }
