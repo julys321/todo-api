@@ -1,16 +1,16 @@
 package lt.voidpumpkin.homework.todoapi;
 
-public class TodoItem {
+public class TodoListItemResponse {
     private String id;
 
     private String text;
 
     private String date;
 
-    public TodoItem() {
+    public TodoListItemResponse() {
     }
 
-    public TodoItem(String id, String text, String date) {
+    public TodoListItemResponse(String id, String text, String date) {
         this.id = id;
         this.text = text;
         this.date = date;
