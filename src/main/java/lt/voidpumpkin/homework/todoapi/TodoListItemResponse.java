@@ -1,26 +1,28 @@
 package lt.voidpumpkin.homework.todoapi;
 
+import java.sql.Timestamp;
+
 public class TodoListItemResponse {
-    private String id;
+    private Integer id;
 
     private String text;
 
-    private String date;
+    private Timestamp date;
 
     public TodoListItemResponse() {
     }
 
-    public TodoListItemResponse(String id, String text, String date) {
+    public TodoListItemResponse(Integer id, String text, Timestamp date) {
         this.id = id;
         this.text = text;
         this.date = date;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,11 +34,11 @@ public class TodoListItemResponse {
         this.text = text;
     }
 
-    public String getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 }
