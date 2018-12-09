@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-public class TodoItemController {
+public class TodoListItemController {
     //TODO delete mocked list
     private List<TodoListItemResponse> todoListItemResponses;
     @Autowired
@@ -21,7 +21,7 @@ public class TodoItemController {
 
     Todoitem testingItem = Todoitem.TODOITEM;
 
-    public TodoItemController() {
+    public TodoListItemController() {
         //TODO delete mocked list filling
         this.todoListItemResponses = new ArrayList<>();
         todoListItemResponses.add(new TodoListItemResponse("1","Get eggs","2018-12-08"));
