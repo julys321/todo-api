@@ -22,17 +22,21 @@ public class TodoListItemController {
 
     Todoitem testingItem = Todoitem.TODOITEM;
 
-    public TodoListItemController() {
-        //TODO delete mocked list filling
-        this.todoListItemResponses = new ArrayList<>();
-        todoListItemResponses.add(new TodoListItemResponse(1,"Get eggs",new Timestamp(Instant.now().toEpochMilli())));
-        todoListItemResponses.add(new TodoListItemResponse(5,"Get pants",new Timestamp(Instant.now().toEpochMilli())));
-        todoListItemResponses.add(new TodoListItemResponse(2,"Take a bath",new Timestamp(Instant.now().toEpochMilli())));
+    private List<TodoListItemResponse> getTodoListItemsFromDatabase(){
+        TodoitemRecord[] todoitemRecords = dsl
+                .selectFrom(testingItem)
+                .fetchArray();
+        //TODO find a better way to do this
+        List<TodoListItemResponse> todoListItemsFromDatabase = new ArrayList<>();
+        for(TodoitemRecord todoitemRecord:todoitemRecords){
+            todoListItemsFromDatabase.add(new TodoListItemResponse(todoitemRecord.getId(),todoitemRecord.getText(),todoitemRecord.getCreationdate()));
+        }
+        return todoListItemsFromDatabase;
     }
 
     @RequestMapping(value = "/TodoList",method = RequestMethod.GET)
     public List<TodoListItemResponse> getTodoList() {
-        return todoListItemResponses;
+        return getTodoListItemsFromDatabase();
     }
 
     @RequestMapping(value = "/addTodoItem",method = RequestMethod.POST)
