@@ -29,8 +29,8 @@ public class TodoListItemController {
         todoListItemResponses.add(new TodoListItemResponse("2","Take a bath","2020-10-01"));
     }
 
-    @RequestMapping(value = "/allTodoItems",method = RequestMethod.GET)
-    public List<TodoListItemResponse> getAllTodoItems() {
+    @RequestMapping(value = "/TodoList",method = RequestMethod.GET)
+    public List<TodoListItemResponse> getTodoList() {
         return todoListItemResponses;
     }
 
