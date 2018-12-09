@@ -1,6 +1,7 @@
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+src/main/java/lt/voidpumpkin/homework/generated/
 
 ### STS ###
 .apt_generated
