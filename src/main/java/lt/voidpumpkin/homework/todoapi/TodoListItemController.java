@@ -16,12 +16,11 @@ import java.util.List;
 
 @RestController
 public class TodoListItemController {
-    //TODO delete mocked list
-    private List<TodoListItemResponse> todoListItemResponses;
+
     @Autowired
     private DSLContext dsl;
 
-    Todoitem testingItem = Todoitem.TODOITEM;
+    private Todoitem testingItem = Todoitem.TODOITEM;
 
     private List<TodoListItemResponse> getTodoListItemsFromDatabase() {
         TodoitemRecord[] todoitemRecords = dsl
@@ -41,17 +40,13 @@ public class TodoListItemController {
     }
 
     @RequestMapping(value = "/addTodoItem", method = RequestMethod.POST)
+    //TODO make it return only the item that was added
     public List<TodoListItemResponse> addNewTodoItem(@RequestBody TodoListItemResponse todoListItemResponse) {
         dsl.insertInto(testingItem)
                 .set(testingItem.TEXT, todoListItemResponse.getText())
                 .set(testingItem.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
                 .execute();
-
-        //TODO delete mocked todoitem saving
-        todoListItemResponse.setId(0);//TODO id generation
-        todoListItemResponse.setDate(new Timestamp(Instant.now().toEpochMilli()));//TODO move this bad stuff to Service
-        todoListItemResponses.add(todoListItemResponse);
-        return todoListItemResponses;
+        return getTodoListItemsFromDatabase();
     }
 
 }
