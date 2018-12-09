@@ -54,6 +54,7 @@ jooq {
 		generator {
 			database {
 				name = 'org.jooq.meta.postgres.PostgresDatabase'
+				includes = 'Todoitem'//use | to separate
 			}
 			target {
 				packageName = 'lt.voidpumpkin.homework.generated.db'
