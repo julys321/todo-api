@@ -4,13 +4,14 @@ import lt.voidpumpkin.homework.generated.db.tables.Todoitem;
 import lt.voidpumpkin.homework.generated.db.tables.records.TodoitemRecord;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -22,28 +23,28 @@ public class TodoListItemController {
 
     Todoitem testingItem = Todoitem.TODOITEM;
 
-    private List<TodoListItemResponse> getTodoListItemsFromDatabase(){
+    private List<TodoListItemResponse> getTodoListItemsFromDatabase() {
         TodoitemRecord[] todoitemRecords = dsl
                 .selectFrom(testingItem)
                 .fetchArray();
         //TODO find a better way to do this
         List<TodoListItemResponse> todoListItemsFromDatabase = new ArrayList<>();
-        for(TodoitemRecord todoitemRecord:todoitemRecords){
-            todoListItemsFromDatabase.add(new TodoListItemResponse(todoitemRecord.getId(),todoitemRecord.getText(),todoitemRecord.getCreationdate()));
+        for (TodoitemRecord todoitemRecord : todoitemRecords) {
+            todoListItemsFromDatabase.add(new TodoListItemResponse(todoitemRecord.getId(), todoitemRecord.getText(), todoitemRecord.getCreationdate()));
         }
         return todoListItemsFromDatabase;
     }
 
-    @RequestMapping(value = "/TodoList",method = RequestMethod.GET)
+    @RequestMapping(value = "/TodoList", method = RequestMethod.GET)
     public List<TodoListItemResponse> getTodoList() {
         return getTodoListItemsFromDatabase();
     }
 
-    @RequestMapping(value = "/addTodoItem",method = RequestMethod.POST)
+    @RequestMapping(value = "/addTodoItem", method = RequestMethod.POST)
     public List<TodoListItemResponse> addNewTodoItem(@RequestBody TodoListItemResponse todoListItemResponse) {
         dsl.insertInto(testingItem)
                 .set(testingItem.TEXT, todoListItemResponse.getText())
-                .set(testingItem.CREATIONDATE,new Timestamp(Instant.now().toEpochMilli()))
+                .set(testingItem.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
                 .execute();
 
         //TODO delete mocked todoitem saving
