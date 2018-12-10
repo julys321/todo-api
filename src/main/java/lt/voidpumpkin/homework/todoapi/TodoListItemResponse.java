@@ -7,15 +7,15 @@ public class TodoListItemResponse {
 
     private String text;
 
-    private Timestamp date;
+    private Timestamp creationDate;
 
     public TodoListItemResponse() {
     }
 
-    public TodoListItemResponse(Integer id, String text, Timestamp date) {
+    public TodoListItemResponse(Integer id, String text, Timestamp creationDate) {
         this.id = id;
         this.text = text;
-        this.date = date;
+        this.creationDate = creationDate;
     }
 
     public Integer getId() {
@@ -34,11 +34,11 @@ public class TodoListItemResponse {
         this.text = text;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public Timestamp getCreationDate() {
+        return creationDate;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
     }
 }
