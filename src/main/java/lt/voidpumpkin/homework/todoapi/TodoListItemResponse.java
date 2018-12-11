@@ -9,13 +9,16 @@ public class TodoListItemResponse {
 
     private Timestamp creationDate;
 
+    private Boolean isArchived;
+
     public TodoListItemResponse() {
     }
 
-    public TodoListItemResponse(Integer id, String text, Timestamp creationDate) {
+    public TodoListItemResponse(Integer id, String text, Timestamp creationDate, Boolean isArchived) {
         this.id = id;
         this.text = text;
         this.creationDate = creationDate;
+        this.isArchived = isArchived;
     }
 
     public Integer getId() {
@@ -40,5 +43,13 @@ public class TodoListItemResponse {
 
     public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Boolean getArchived() {
+        return isArchived;
+    }
+
+    public void setArchived(Boolean archived) {
+        isArchived = archived;
     }
 }
