@@ -22,6 +22,14 @@ public class TodoListItemService {
 
     private Todoitem todoItemTable = Todoitem.TODOITEM;
 
+    List<TodoListItemResponse> fetchTodoListItemsFromDatabase(Boolean isArchived) {
+        TodoitemRecord[] todoitemRecords = dsl
+                .selectFrom(todoItemTable)
+                .where(todoItemTable.ISARCHIVED.eq(isArchived))
+                .fetchArray();
+        return turnTodoItemRecordsToResponses(todoitemRecords);
+    }
+
     TodoListItemResponse addNewTodoItemToDatabase(TodoListItemResponse todoListItemResponse) {
         TodoitemRecord result = dsl.insertInto(todoItemTable)
                 .set(todoItemTable.TEXT, todoListItemResponse.getText())
@@ -40,14 +48,6 @@ public class TodoListItemService {
                 .returning()
                 .fetchOne();
         return new TodoListItemResponse(result);
-    }
-
-    List<TodoListItemResponse> fetchNotArchivedTodoListItemsFromDatabase() {
-        TodoitemRecord[] todoitemRecords = dsl
-                .selectFrom(todoItemTable)
-                .where(todoItemTable.ISARCHIVED.eq(true))
-                .fetchArray();
-        return turnTodoItemRecordsToResponses(todoitemRecords);
     }
 
     private List<TodoListItemResponse> turnTodoItemRecordsToResponses(TodoitemRecord[] todoitemRecords) {

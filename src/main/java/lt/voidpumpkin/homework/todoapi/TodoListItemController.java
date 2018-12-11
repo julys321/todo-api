@@ -14,8 +14,14 @@ public class TodoListItemController {
 
     @CrossOrigin
     @RequestMapping(value = "/todoList", method = RequestMethod.GET)
-    public List<TodoListItemResponse> getTodoList() {
-        return todoListItemService.fetchNotArchivedTodoListItemsFromDatabase();
+    public List<TodoListItemResponse> getNotArchivedTodoList() {
+        return todoListItemService.fetchTodoListItemsFromDatabase(false);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/todoList/archived", method = RequestMethod.GET)
+    public List<TodoListItemResponse> getArchivedTodoList() {
+        return todoListItemService.fetchTodoListItemsFromDatabase(true);
     }
 
     @CrossOrigin
