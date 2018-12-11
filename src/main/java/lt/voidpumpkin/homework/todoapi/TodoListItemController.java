@@ -4,10 +4,7 @@ import lt.voidpumpkin.homework.generated.db.tables.Todoitem;
 import lt.voidpumpkin.homework.generated.db.tables.records.TodoitemRecord;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -34,11 +31,13 @@ public class TodoListItemController {
         return todoListItemsFromDatabase;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/TodoList", method = RequestMethod.GET)
     public List<TodoListItemResponse> getTodoList() {
         return getTodoListItemsFromDatabase();
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/addTodoItem", method = RequestMethod.POST)
     //TODO make it return only the item that was added
     public List<TodoListItemResponse> addNewTodoItem(@RequestBody TodoListItemResponse todoListItemResponse) {
