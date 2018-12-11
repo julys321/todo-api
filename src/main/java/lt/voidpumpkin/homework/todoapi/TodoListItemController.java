@@ -44,7 +44,8 @@ public class TodoListItemController {
         dsl.insertInto(testingItem)
                 .set(testingItem.TEXT, todoListItemResponse.getText())
                 .set(testingItem.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
-                .set(testingItem.ISARCHIVED, todoListItemResponse.getIsArchived())
+                //TODO fix bug where isArchived is always null and delete this hard code
+                .set(testingItem.ISARCHIVED, false)
                 .execute();
         return getTodoListItemsFromDatabase();
     }
