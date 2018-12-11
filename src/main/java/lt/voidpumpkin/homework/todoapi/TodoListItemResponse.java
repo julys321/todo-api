@@ -11,23 +11,19 @@ public class TodoListItemResponse {
 
     private Timestamp creationDate;
 
-    private Boolean isArchived;
-
     public TodoListItemResponse() {
     }
 
-    public TodoListItemResponse(Integer id, String text, Timestamp creationDate, Boolean isArchived) {
+    public TodoListItemResponse(Integer id, String text, Timestamp creationDate) {
         this.id = id;
         this.text = text;
         this.creationDate = creationDate;
-        this.isArchived = isArchived;
     }
 
     public TodoListItemResponse(TodoitemRecord todoitemRecord) {
         this.id = todoitemRecord.getId();
         this.text = todoitemRecord.getText();
         this.creationDate = todoitemRecord.getCreationdate();
-        this.isArchived = todoitemRecord.getIsarchived();
     }
 
 
@@ -53,13 +49,5 @@ public class TodoListItemResponse {
 
     public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public Boolean getIsArchived() {
-        return isArchived;
-    }
-
-    public void setIsArchived(Boolean isArchived) {
-        isArchived = isArchived;
     }
 }

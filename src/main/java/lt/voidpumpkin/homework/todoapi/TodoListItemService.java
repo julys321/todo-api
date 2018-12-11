@@ -34,7 +34,6 @@ public class TodoListItemService {
         TodoitemRecord result = dsl.insertInto(todoItemTable)
                 .set(todoItemTable.TEXT, todoListItemResponse.getText())
                 .set(todoItemTable.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
-                //TODO fix bug where isArchived is always null and delete this hard code
                 .set(todoItemTable.ISARCHIVED, false)
                 .returning()
                 .fetchOne();
