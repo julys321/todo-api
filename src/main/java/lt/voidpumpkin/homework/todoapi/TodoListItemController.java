@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,12 +22,7 @@ public class TodoListItemController {
         TodoitemRecord[] todoitemRecords = dsl
                 .selectFrom(todoItemTable)
                 .fetchArray();
-        //TODO find a better way to do this
-        List<TodoListItemResponse> todoListItemsFromDatabase = new ArrayList<>();
-        for (TodoitemRecord todoitemRecord : todoitemRecords) {
-            todoListItemsFromDatabase.add(new TodoListItemResponse(todoitemRecord));
-        }
-        return todoListItemsFromDatabase;
+        return ClassTranslator.translateRecordsToResponses(todoitemRecords);
     }
 
     @CrossOrigin
