@@ -4,7 +4,8 @@ This project was generated with [SPRING INITIALIZR](https://start.spring.io/)
 
 ## Prerequisites #1
 
-Create a database named "TodoListDB" with user todoapi and password todoapi that would be able to create schemas in that database.
+Create a database named "TodoListDB" with user "todoapi" and password "todoapi" that would be able to create schemas in that database.
+
 Or set these parrameters in:
    'build.gradle' file sections 'jooq' and 'flyway'
    in main/java/resources/ 'application.properties'
