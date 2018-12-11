@@ -11,3 +11,6 @@ Or set these parrameters in:
    
 ## Prerequisites #2
 run 'gradle generateTodoapiJooqSchemaSource' this will run flywayMigrate to add todo-schema and requered tables + some data to then, then it will generate jooq classes that connect to the database
+
+## Running the project
+Now you can just run TodoApiAplication
