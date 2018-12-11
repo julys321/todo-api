@@ -22,7 +22,7 @@ public class TodoListItemController {
         TodoitemRecord[] todoitemRecords = dsl
                 .selectFrom(todoItemTable)
                 .fetchArray();
-        return ClassTranslator.translateRecordsToResponses(todoitemRecords);
+        return TodoListItemService.translateRecordsToResponses(todoitemRecords);
     }
 
     @CrossOrigin
