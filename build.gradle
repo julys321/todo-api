@@ -74,3 +74,4 @@ jooq {
 		}
 	}
 }
+generateTodoapiJooqSchemaSource.dependsOn flywayMigrate
