@@ -45,11 +45,11 @@ public class TodoListItemResponse {
         this.creationDate = creationDate;
     }
 
-    public Boolean getisArchived() {
+    public Boolean getIsArchived() {
         return isArchived;
     }
 
-    public void setisArchived(Boolean isArchived) {
+    public void setIsArchived(Boolean isArchived) {
         isArchived = isArchived;
     }
 }

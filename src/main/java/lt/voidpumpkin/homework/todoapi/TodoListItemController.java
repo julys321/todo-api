@@ -44,7 +44,7 @@ public class TodoListItemController {
         dsl.insertInto(testingItem)
                 .set(testingItem.TEXT, todoListItemResponse.getText())
                 .set(testingItem.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
-                .set(testingItem.ISARCHIVED, todoListItemResponse.getisArchived())
+                .set(testingItem.ISARCHIVED, todoListItemResponse.getIsArchived())
                 .execute();
         return getTodoListItemsFromDatabase();
     }
