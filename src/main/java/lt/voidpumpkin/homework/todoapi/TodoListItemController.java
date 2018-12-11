@@ -21,7 +21,7 @@ public class TodoListItemController {
     @CrossOrigin
     @RequestMapping(value = "/todoListItem", method = RequestMethod.POST)
     //TODO make it return only the item that was added
-    public List<TodoListItemResponse> addNewTodoItem(@RequestBody TodoListItemResponse todoListItemResponse) {
+    public TodoListItemResponse addNewTodoItem(@RequestBody TodoListItemResponse todoListItemResponse) {
         return todoListItemService.addNewTodoItemToDatabase(todoListItemResponse);
     }
 

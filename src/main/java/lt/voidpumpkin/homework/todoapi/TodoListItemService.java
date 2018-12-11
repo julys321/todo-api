@@ -22,14 +22,15 @@ public class TodoListItemService {
 
     private Todoitem todoItemTable = Todoitem.TODOITEM;
 
-    List<TodoListItemResponse> addNewTodoItemToDatabase(TodoListItemResponse todoListItemResponse) {
-        dsl.insertInto(todoItemTable)
+    TodoListItemResponse addNewTodoItemToDatabase(TodoListItemResponse todoListItemResponse) {
+        TodoitemRecord result = dsl.insertInto(todoItemTable)
                 .set(todoItemTable.TEXT, todoListItemResponse.getText())
                 .set(todoItemTable.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
                 //TODO fix bug where isArchived is always null and delete this hard code
                 .set(todoItemTable.ISARCHIVED, false)
-                .execute();
-        return fetchTodoListItemsFromDatabase();
+                .returning()
+                .fetchOne();
+        return new TodoListItemResponse(result);
     }
 
     List<TodoListItemResponse> setDatabaseTodoItemAsArchived(Integer todoListItemId) {
