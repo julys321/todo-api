@@ -47,7 +47,7 @@ dependencies {
 
 flyway {
 	driver = 'org.postgresql.Driver'
-	url = 'jdbc:postgresql://localhost:5432/VoidpumpkinDB'
+	url = 'jdbc:postgresql://localhost:5432/TodoListDB'
 	user = 'todoapi'
 	password = 'todoapi'
 	schemas = ['todo-schema']
@@ -57,7 +57,7 @@ jooq {
 	todoapi(sourceSets.main) {
 		jdbc {
 			driver = 'org.postgresql.Driver'
-			url = 'jdbc:postgresql://localhost:5432/VoidpumpkinDB'
+			url = 'jdbc:postgresql://localhost:5432/TodoListDB'
 			user = 'todoapi'
 			password = 'todoapi'
 			schema = 'todo-schema'
@@ -65,7 +65,7 @@ jooq {
 		generator {
 			database {
 				name = 'org.jooq.meta.postgres.PostgresDatabase'
-				includes = 'Todoitem'//use | to separate
+				includes = 'Todoitem'
 			}
 			target {
 				packageName = 'lt.voidpumpkin.homework.generated.db'
