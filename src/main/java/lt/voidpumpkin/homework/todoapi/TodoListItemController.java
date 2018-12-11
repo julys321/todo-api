@@ -17,11 +17,11 @@ public class TodoListItemController {
     @Autowired
     private DSLContext dsl;
 
-    private Todoitem testingItem = Todoitem.TODOITEM;
+    private Todoitem todoItemTable = Todoitem.TODOITEM;
 
     private List<TodoListItemResponse> getTodoListItemsFromDatabase() {
         TodoitemRecord[] todoitemRecords = dsl
-                .selectFrom(testingItem)
+                .selectFrom(todoItemTable)
                 .fetchArray();
         //TODO find a better way to do this
         List<TodoListItemResponse> todoListItemsFromDatabase = new ArrayList<>();
@@ -41,11 +41,11 @@ public class TodoListItemController {
     @RequestMapping(value = "/todoListItem", method = RequestMethod.POST)
     //TODO make it return only the item that was added
     public List<TodoListItemResponse> addNewTodoItem(@RequestBody TodoListItemResponse todoListItemResponse) {
-        dsl.insertInto(testingItem)
-                .set(testingItem.TEXT, todoListItemResponse.getText())
-                .set(testingItem.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
+        dsl.insertInto(todoItemTable)
+                .set(todoItemTable.TEXT, todoListItemResponse.getText())
+                .set(todoItemTable.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
                 //TODO fix bug where isArchived is always null and delete this hard code
-                .set(testingItem.ISARCHIVED, false)
+                .set(todoItemTable.ISARCHIVED, false)
                 .execute();
         return getTodoListItemsFromDatabase();
     }
@@ -53,7 +53,7 @@ public class TodoListItemController {
     @CrossOrigin
     @RequestMapping(value = "/archiveTodoListItem/{todoListItemId}", method = RequestMethod.PUT)
     public List<TodoListItemResponse> archiveTodoItem(@PathVariable Integer todoListItemId) {
-        dsl.fetchOne(testingItem, testingItem.ID.like(String.valueOf(todoListItemId)));
+        dsl.fetchOne(todoItemTable, todoItemTable.ID.like(String.valueOf(todoListItemId)));
         return getTodoListItemsFromDatabase();
     }
 
