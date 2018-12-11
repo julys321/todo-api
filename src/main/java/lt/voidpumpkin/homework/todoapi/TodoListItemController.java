@@ -27,7 +27,7 @@ public class TodoListItemController {
 
     @CrossOrigin
     @RequestMapping(value = "/archiveTodoListItem/{todoListItemId}", method = RequestMethod.PUT)
-    public List<TodoListItemResponse> archiveTodoItem(@PathVariable Integer todoListItemId) {
+    public TodoListItemResponse archiveTodoItem(@PathVariable Integer todoListItemId) {
         return todoListItemService.setDatabaseTodoItemAsArchived(todoListItemId);
     }
 

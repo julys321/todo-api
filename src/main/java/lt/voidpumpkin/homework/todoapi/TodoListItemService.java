@@ -33,14 +33,13 @@ public class TodoListItemService {
         return new TodoListItemResponse(result);
     }
 
-    List<TodoListItemResponse> setDatabaseTodoItemAsArchived(Integer todoListItemId) {
-        dsl.update(todoItemTable)
+    TodoListItemResponse setDatabaseTodoItemAsArchived(Integer todoListItemId) {
+        TodoitemRecord result = dsl.update(todoItemTable)
                 .set(todoItemTable.ISARCHIVED, true)
                 .where(todoItemTable.ID.eq(todoListItemId))
-                .execute();
-        dsl.fetchOne(todoItemTable, todoItemTable.ID.like(String.valueOf(todoListItemId)))
-                .setIsarchived(true);
-        return fetchTodoListItemsFromDatabase();
+                .returning()
+                .fetchOne();
+        return new TodoListItemResponse(result);
     }
 
     List<TodoListItemResponse> fetchTodoListItemsFromDatabase() {
