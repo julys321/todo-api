@@ -26,7 +26,7 @@ public class TodoListItemController {
         //TODO find a better way to do this
         List<TodoListItemResponse> todoListItemsFromDatabase = new ArrayList<>();
         for (TodoitemRecord todoitemRecord : todoitemRecords) {
-            todoListItemsFromDatabase.add(new TodoListItemResponse(todoitemRecord.getId(), todoitemRecord.getText(), todoitemRecord.getCreationdate()));
+            todoListItemsFromDatabase.add(new TodoListItemResponse(todoitemRecord.getId(), todoitemRecord.getText(), todoitemRecord.getCreationdate(), todoitemRecord.getIsarchived()));
         }
         return todoListItemsFromDatabase;
     }
@@ -44,6 +44,7 @@ public class TodoListItemController {
         dsl.insertInto(testingItem)
                 .set(testingItem.TEXT, todoListItemResponse.getText())
                 .set(testingItem.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
+                .set(testingItem.ISARCHIVED, todoListItemResponse.getisArchived())
                 .execute();
         return getTodoListItemsFromDatabase();
     }
