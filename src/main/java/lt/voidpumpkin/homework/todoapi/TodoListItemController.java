@@ -49,4 +49,11 @@ public class TodoListItemController {
         return getTodoListItemsFromDatabase();
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/archiveTodoListItem/{todoListItemId}", method = RequestMethod.PUT)
+    public List<TodoListItemResponse> archiveTodoItem(@PathVariable Integer todoListItemId) {
+        dsl.fetchOne(testingItem, testingItem.ID.like(String.valueOf(todoListItemId)));
+        return getTodoListItemsFromDatabase();
+    }
+
 }
