@@ -42,9 +42,10 @@ public class TodoListItemService {
         return new TodoListItemResponse(result);
     }
 
-    List<TodoListItemResponse> fetchTodoListItemsFromDatabase() {
+    List<TodoListItemResponse> fetchNotArchivedTodoListItemsFromDatabase() {
         TodoitemRecord[] todoitemRecords = dsl
                 .selectFrom(todoItemTable)
+                .where(todoItemTable.ISARCHIVED.eq(true))
                 .fetchArray();
         return turnTodoItemRecordsToResponses(todoitemRecords);
     }
