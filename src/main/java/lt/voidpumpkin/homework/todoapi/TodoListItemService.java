@@ -33,7 +33,12 @@ public class TodoListItemService {
     }
 
     List<TodoListItemResponse> setDatabaseTodoItemAsArchived(Integer todoListItemId) {
-        dsl.fetchOne(todoItemTable, todoItemTable.ID.like(String.valueOf(todoListItemId)));
+        dsl.update(todoItemTable)
+                .set(todoItemTable.ISARCHIVED, true)
+                .where(todoItemTable.ID.eq(todoListItemId))
+                .execute();
+        dsl.fetchOne(todoItemTable, todoItemTable.ID.like(String.valueOf(todoListItemId)))
+                .setIsarchived(true);
         return fetchTodoListItemsFromDatabase();
     }
 
