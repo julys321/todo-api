@@ -26,7 +26,7 @@ public class TodoListItemController {
         //TODO find a better way to do this
         List<TodoListItemResponse> todoListItemsFromDatabase = new ArrayList<>();
         for (TodoitemRecord todoitemRecord : todoitemRecords) {
-            todoListItemsFromDatabase.add(new TodoListItemResponse(todoitemRecord.getId(), todoitemRecord.getText(), todoitemRecord.getCreationdate(), todoitemRecord.getIsarchived()));
+            todoListItemsFromDatabase.add(new TodoListItemResponse(todoitemRecord));
         }
         return todoListItemsFromDatabase;
     }

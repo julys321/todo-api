@@ -1,5 +1,7 @@
 package lt.voidpumpkin.homework.todoapi;
 
+import lt.voidpumpkin.homework.generated.db.tables.records.TodoitemRecord;
+
 import java.sql.Timestamp;
 
 public class TodoListItemResponse {
@@ -20,6 +22,14 @@ public class TodoListItemResponse {
         this.creationDate = creationDate;
         this.isArchived = isArchived;
     }
+
+    public TodoListItemResponse(TodoitemRecord todoitemRecord) {
+        this.id = todoitemRecord.getId();
+        this.text = todoitemRecord.getText();
+        this.creationDate = todoitemRecord.getCreationdate();
+        this.isArchived = todoitemRecord.getIsarchived();
+    }
+
 
     public Integer getId() {
         return id;
