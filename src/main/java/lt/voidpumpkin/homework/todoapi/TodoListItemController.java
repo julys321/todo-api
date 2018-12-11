@@ -32,13 +32,13 @@ public class TodoListItemController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/TodoList", method = RequestMethod.GET)
+    @RequestMapping(value = "/todoList", method = RequestMethod.GET)
     public List<TodoListItemResponse> getTodoList() {
         return getTodoListItemsFromDatabase();
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/addTodoItem", method = RequestMethod.POST)
+    @RequestMapping(value = "/todoListItem", method = RequestMethod.POST)
     //TODO make it return only the item that was added
     public List<TodoListItemResponse> addNewTodoItem(@RequestBody TodoListItemResponse todoListItemResponse) {
         dsl.insertInto(testingItem)
