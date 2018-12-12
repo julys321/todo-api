@@ -30,9 +30,9 @@ public class TodoListItemService {
         return turnTodoItemRecordsToResponses(todoitemRecords);
     }
 
-    TodoListItemResponse addNewTodoItemToDatabase(TodoListItemResponse todoListItemResponse) {
+    TodoListItemResponse addNewTodoItemToDatabase(String todoListItemText) {
         TodoitemRecord result = dsl.insertInto(todoItemTable)
-                .set(todoItemTable.TEXT, todoListItemResponse.getText())
+                .set(todoItemTable.TEXT, todoListItemText)
                 .set(todoItemTable.CREATIONDATE, new Timestamp(Instant.now().toEpochMilli()))
                 .set(todoItemTable.ISARCHIVED, false)
                 .returning()

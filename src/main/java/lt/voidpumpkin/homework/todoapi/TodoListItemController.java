@@ -26,8 +26,8 @@ public class TodoListItemController {
 
     @CrossOrigin
     @RequestMapping(value = "/todoListItem", method = RequestMethod.POST)
-    public TodoListItemResponse addNewTodoItem(@RequestBody TodoListItemResponse todoListItemResponse) {
-        return todoListItemService.addNewTodoItemToDatabase(todoListItemResponse);
+    public TodoListItemResponse addNewTodoItem(@RequestBody String todoListItemText) {
+        return todoListItemService.addNewTodoItemToDatabase(todoListItemText);
     }
 
     @CrossOrigin
